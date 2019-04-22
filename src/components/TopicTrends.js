@@ -5,7 +5,7 @@ import podium from '../images/podium.png'
 import crown1 from '../images/crown1.png'
 
 const Container = styled.div`
-  padding: 20px 2vw;
+  padding: 50px 2vw 0 2vw;
   text-align: center;
   box-shadow: inset 2px 2px 18px #000000;
   ${'' /* background: #f9f9f9; */}
@@ -22,7 +22,9 @@ const Podium = styled.div`
   background-image: url(${podium});
   background-repeat: no-repeat;
   background-size: contain;
-  height: 50vh;
+  background-position: bottom;
+  height: 27vw;
+  max-height: 350px;
   display: flex;
   justify-content: center;
 `
@@ -74,7 +76,7 @@ export default class TopicTrends extends Component {
     if (_topics.length < 1)
       return 'Loading'
     let backgroundColor = 'rgba(16, 0, 255, 0.5)'
-    let maxWidth = `45%`
+    let maxWidth = `40%`
     if (index === 0) {
       backgroundColor = 'rgba(196, 0, 13, 0.5)'
       maxWidth = `60%`
@@ -85,10 +87,11 @@ export default class TopicTrends extends Component {
       <TopicTitle
         style={Object.assign({
           maxWidth,
+          backgroundColor,
+          minWidth: '400px',
           fontSize: index === 0 ? '20px' : '',
           margin: 'auto',
           marginTop: '1vh',
-          backgroundColor,
         },
           index === 1 ? {
             marginRight: '0 !important'
@@ -109,7 +112,7 @@ export default class TopicTrends extends Component {
   render() {
     return (
       <Container>
-        <div style={{ maxWidth: '1300px', margin: 'auto' }}><br />
+        <div style={{ maxWidth: '1300px', margin: 'auto' }}>
           <Title>Topic Trends</Title><br /><br /><br />
           <img src={crown1} alt="1" height="120px" />
           {this.getTopicTitle(0)}

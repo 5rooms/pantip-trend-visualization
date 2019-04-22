@@ -113,7 +113,7 @@ export default class TopicTrends extends Component {
     return (
       <Container>
         <div style={{ maxWidth: '1300px', margin: 'auto' }}>
-          <Title>Topic Trends</Title><br /><br /><br />
+          <Title>Top Topics</Title><br /><br /><br />
           <img src={crown1} alt="1" height="120px" />
           {this.getTopicTitle(0)}
           <Podium>

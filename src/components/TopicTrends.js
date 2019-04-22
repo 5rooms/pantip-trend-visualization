@@ -1,22 +1,42 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import podium from '../images/podium.png'
+import crown1 from '../images/crown1.png'
 
 const Container = styled.div`
-  padding: 20px 10vw;
+  padding: 20px 2vw;
   text-align: center;
-  box-shadow: inset 2px 2px 18px #888888;
-  background: #f9f9f9;
-
-  & > .VictoryContainer {
-    height: 450px !important;
-    width: 820px !important; 
-  }
+  box-shadow: inset 2px 2px 18px #000000;
+  ${'' /* background: #f9f9f9; */}
+  background: #212121;
+  color: white;
 `
 
 const Title = styled.b`
   font-size: 50px;
-  margin-top: 50px;
+  margin-bottom: 100px;
+`
+
+const Podium = styled.div`
+  background-image: url(${podium});
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+`
+
+const TopicTitle = styled.div`
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 16px;
+`
+
+const Viewer = styled.p`
+  font-size: 20px;
+  color: yellow;
+  margin-bottom: 0;
 `
 
 const topics = [
@@ -49,16 +69,55 @@ export default class TopicTrends extends Component {
       })
   }
 
-  render() {
+  getTopicTitle(index) {
     const _topics = this.state.topics
+    if (_topics.length < 1)
+      return 'Loading'
+    let backgroundColor = 'rgba(16, 0, 255, 0.5)'
+    let maxWidth = `45%`
+    if (index === 0) {
+      backgroundColor = 'rgba(196, 0, 13, 0.5)'
+      maxWidth = `60%`
+    } else if (index === 1) {
+      backgroundColor = 'rgba(32, 124, 13, 0.5)'
+    }
+    return (
+      <TopicTitle
+        style={Object.assign({
+          maxWidth,
+          fontSize: index === 0 ? '20px' : '',
+          margin: 'auto',
+          marginTop: '1vh',
+          backgroundColor,
+        },
+          index === 1 ? {
+            marginRight: '0 !important'
+          } : {},
+          index === 2 ? {
+            marginLeft: '0 !important'
+          } : {}
+        )}
+      >
+        <span>
+          {_topics[index].title}<br />
+          <Viewer>{_topics[index].viewers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} viewers</Viewer>
+        </span>
+      </TopicTitle>
+    )
+  }
+
+  render() {
     return (
       <Container>
-        <Title>Topic Trends</Title><br />
-        {_topics.length > 0 ?
-          _topics.map(topic =>
-            <div key={topic.topic_id}>{_topics.indexOf(topic) + 1}.) {topic.title}</div>
-          )
-          : ''}
+        <div style={{ maxWidth: '1300px', margin: 'auto' }}><br />
+          <Title>Topic Trends</Title><br /><br /><br />
+          <img src={crown1} alt="1" height="120px" />
+          {this.getTopicTitle(0)}
+          <Podium>
+            {this.getTopicTitle(1)}
+            {this.getTopicTitle(2)}
+          </Podium>
+        </div>
       </Container>
     )
   }

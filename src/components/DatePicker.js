@@ -9,7 +9,7 @@ const dateFormat = 'DD-MM-YYYY'
 
 const Container = styled.div`
   text-align: center;
-  padding: 10vh;
+  padding: calc(10vh + 80px) 0 10vh 0;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${time});
   background-position: 35% 35%;
 `

@@ -4,7 +4,7 @@ import pantipLogo from '../images/pantip-logo-yellow.png'
 
 const Container = styled.div`
   height: 80px;
-  background-image: linear-gradient(to right, #3C3963 , #9b97db);
+  ${'' /* background-image: linear-gradient(to right, #3C3963 , #9b97db); */}
   box-shadow: 0px 5px 18px rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;

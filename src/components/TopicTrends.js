@@ -8,7 +8,7 @@ import Tada from 'react-reveal/Tada'
 import { FadeIn, Flex } from '../styles'
 
 const Background = styled.div`
-  padding: 50px 2vw 0 2vw;
+  padding: 50px 2vw 50px 2vw;
   text-align: center;
   box-shadow: inset 2px 2px 18px #000000;
   background: #141414;
@@ -39,9 +39,10 @@ const Podium = styled.div`
 `
 
 const TopicTitle = styled.div`
-  margin-top: 20px;
   font-weight: bold;
   font-size: 16px;
+  min-width: 400px;
+  margin: auto;
 `
 
 const Viewer = styled.p`
@@ -113,9 +114,7 @@ export default class TopicTrends extends Component {
         style={Object.assign({
           maxWidth,
           backgroundColor,
-          minWidth: '400px',
           fontSize: index === 0 ? '20px' : '',
-          margin: 'auto',
         },
           index === 1 ? {
             marginRight: '0 !important'

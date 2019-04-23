@@ -3,14 +3,22 @@ import styled from 'styled-components'
 import axios from 'axios'
 import podium from '../images/podium.png'
 import crown1 from '../images/crown1.png'
+import Loader from 'react-loader-spinner'
+import Fade from 'react-reveal/Fade'
+import Tada from 'react-reveal/Tada'
 
-const Container = styled.div`
+const Background = styled.div`
   padding: 50px 2vw 0 2vw;
   text-align: center;
   box-shadow: inset 2px 2px 18px #000000;
   ${'' /* background: #f9f9f9; */}
   background: #212121;
   color: white;
+`
+
+const Container = styled.div`
+  max-width: 1300px;
+  margin: auto;
 `
 
 const Title = styled.b`
@@ -73,8 +81,6 @@ export default class TopicTrends extends Component {
 
   getTopicTitle(index) {
     const _topics = this.state.topics
-    if (_topics.length < 1)
-      return 'Loading'
     let backgroundColor = 'rgba(16, 0, 255, 0.5)'
     let maxWidth = `40%`
     if (index === 0) {
@@ -111,17 +117,28 @@ export default class TopicTrends extends Component {
 
   render() {
     return (
-      <Container>
-        <div style={{ maxWidth: '1300px', margin: 'auto' }}>
+      <Background>
+        <Container>
           <Title>Top Topics</Title><br /><br /><br />
-          <img src={crown1} alt="1" height="120px" />
-          {this.getTopicTitle(0)}
-          <Podium>
-            {this.getTopicTitle(1)}
-            {this.getTopicTitle(2)}
-          </Podium>
-        </div>
-      </Container>
+          {this.state.topics.length > 0 ?
+            <Fade bottom>
+              <img src={crown1} alt="1" height="120px" />
+              <Tada>{this.getTopicTitle(0)}</Tada>
+              <Podium>
+                {this.getTopicTitle(1)}
+                {this.getTopicTitle(2)}
+              </Podium>
+            </Fade>
+            : <div style={{ height: '37vw', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+              <Loader
+                type="Plane"
+                color="#00BFFF"
+                height="27vw"
+                width="100"
+              />
+            </div>}
+        </Container>
+      </Background>
     )
   }
 }

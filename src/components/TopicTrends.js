@@ -122,8 +122,10 @@ export default class TopicTrends extends Component {
           <Title>Top Topics</Title><br /><br /><br />
           {this.state.topics.length > 0 ?
             <Fade bottom>
-              <img src={crown1} alt="1" height="120px" />
-              <Tada>{this.getTopicTitle(0)}</Tada>
+              <Tada>
+                <img src={crown1} alt="1" height="120px" />
+                {this.getTopicTitle(0)}
+              </Tada>
               <Podium>
                 {this.getTopicTitle(1)}
                 {this.getTopicTitle(2)}
@@ -131,7 +133,7 @@ export default class TopicTrends extends Component {
             </Fade>
             : <div style={{ height: '37vw', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
               <Loader
-                type="Plane"
+                type="Bars"
                 color="#00BFFF"
                 height="27vw"
                 width="100"

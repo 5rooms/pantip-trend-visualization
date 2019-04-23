@@ -23,6 +23,8 @@ const Container = styled.div`
 const Title = styled.b`
   font-size: 50px;
   margin-bottom: 100px;
+  border: 2px solid white;
+  padding: 20px;
 `
 
 const Podium = styled.div`
@@ -103,6 +105,8 @@ export default class TopicTrends extends Component {
       maxWidth = `60%`
     } else if (index === 1) {
       backgroundColor = 'rgba(32, 124, 13, 0.5)'
+    } else if (index > 2) {
+      backgroundColor = 'transparent'
     }
     return (
       <TopicTitle
@@ -112,13 +116,15 @@ export default class TopicTrends extends Component {
           minWidth: '400px',
           fontSize: index === 0 ? '20px' : '',
           margin: 'auto',
-          marginTop: '1vh',
         },
           index === 1 ? {
             marginRight: '0 !important'
           } : {},
           index === 2 ? {
             marginLeft: '0 !important'
+          } : {},
+          index < 3 ? {
+            marginTop: '1vh'
           } : {}
         )}
       >
@@ -134,7 +140,7 @@ export default class TopicTrends extends Component {
     return (
       <Background>
         <Container>
-          <Title>Top Topics</Title><br /><br /><br />
+          <Title>TOP TOPICS</Title><br /><br /><br />
           {this.state.topics.length > 0 ?
             <PodiumContainer>
               <Tada>
@@ -147,10 +153,12 @@ export default class TopicTrends extends Component {
               </Podium>
               <PodiumBase>
                 <Flex>
-                  <PodiumNumber>
-                    4<br />
-                    5
-                  </PodiumNumber>
+                  <PodiumNumber>4</PodiumNumber>
+                  {this.getTopicTitle(3)}
+                </Flex>
+                <Flex>
+                  <PodiumNumber>5</PodiumNumber>
+                  {this.getTopicTitle(4)}
                 </Flex>
               </PodiumBase>
             </PodiumContainer>

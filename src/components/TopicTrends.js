@@ -4,15 +4,14 @@ import axios from 'axios'
 import podium from '../images/podium.png'
 import crown1 from '../images/crown1.png'
 import Loader from 'react-loader-spinner'
-import Fade from 'react-reveal/Fade'
 import Tada from 'react-reveal/Tada'
+import { FadeIn, Flex } from '../styles'
 
 const Background = styled.div`
   padding: 50px 2vw 0 2vw;
   text-align: center;
   box-shadow: inset 2px 2px 18px #000000;
-  ${'' /* background: #f9f9f9; */}
-  background: #212121;
+  background: #141414;
   color: white;
 `
 
@@ -47,6 +46,22 @@ const Viewer = styled.p`
   font-size: 20px;
   color: yellow;
   margin-bottom: 0;
+`
+
+const PodiumContainer = styled.div`
+  animation: ${FadeIn} 2s;
+`
+
+const PodiumBase = styled.div`
+  background: #b52121;
+`
+
+const PodiumNumber = styled.div`
+  color: #cdcdcd;
+  font-size: 100px;
+  font-weight: bolder;
+  padding-left: 10vw;
+  padding-right: 5vw;
 `
 
 const topics = [
@@ -121,7 +136,7 @@ export default class TopicTrends extends Component {
         <Container>
           <Title>Top Topics</Title><br /><br /><br />
           {this.state.topics.length > 0 ?
-            <Fade bottom>
+            <PodiumContainer>
               <Tada>
                 <img src={crown1} alt="1" height="120px" />
                 {this.getTopicTitle(0)}
@@ -130,13 +145,21 @@ export default class TopicTrends extends Component {
                 {this.getTopicTitle(1)}
                 {this.getTopicTitle(2)}
               </Podium>
-            </Fade>
-            : <div style={{ height: '37vw', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+              <PodiumBase>
+                <Flex>
+                  <PodiumNumber>
+                    4<br />
+                    5
+                  </PodiumNumber>
+                </Flex>
+              </PodiumBase>
+            </PodiumContainer>
+            : <div style={{ height: '50vw', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
               <Loader
                 type="Bars"
                 color="#00BFFF"
-                height="27vw"
-                width="100"
+                height="200"
+                width="200"
               />
             </div>}
         </Container>

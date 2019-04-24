@@ -43,6 +43,7 @@ const TopicTitle = styled.div`
   font-size: 16px;
   min-width: 400px;
   margin: auto;
+  cursor: pointer;
 `
 
 const Viewer = styled.p`
@@ -126,6 +127,7 @@ export default class TopicTrends extends Component {
             marginTop: '1vh'
           } : {}
         )}
+        onClick={() => window.open(`https://pantip.com/topic/${_topics[index].topic_id}`)}
       >
         <span>
           {_topics[index].title}<br />

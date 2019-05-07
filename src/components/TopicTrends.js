@@ -62,7 +62,7 @@ const PodiumBase = styled.div`
 
 const PodiumNumber = styled.div`
   color: #cdcdcd;
-  font-size: 100px;
+  font-size: 80px;
   font-weight: bolder;
   padding-left: 10vw;
   padding-right: 5vw;

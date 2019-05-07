@@ -9,6 +9,18 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@font-face {
+  font-family: 'Neoneon';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Neoneon.otf');
+  src: local('Neoneon'), local('Neoneon'),
+       url('./fonts/Neoneon.otf') format('embedded-opentype'),
+       url('./fonts/Neoneon.otf') format('woff2'),
+       url('./fonts/Neoneon.otf') format('woff'), 
+       url('./fonts/Neoneon.otf') format('truetype'),
+       url('./fonts/Neoneon.otf') format('svg');
 }

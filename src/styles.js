@@ -13,3 +13,8 @@ export const FadeIn = keyframes`
 export const Flex = styled.div`
   display: flex;
 `
+
+export const FlexWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`

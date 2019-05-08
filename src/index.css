@@ -24,3 +24,12 @@ code {
        url('./fonts/Neoneon.otf') format('truetype'),
        url('./fonts/Neoneon.otf') format('svg');
 }
+
+/* @keyframes glow-blue {
+  from {
+    text-shadow: 0 0 5px #b7d2ff, 0 0 30px #0026ff, 0 0 40px #0026ff, 0 0 50px #0026ff, 0 0 60px #0026ff, 0 0 70px #0026ff, 0 0 80px #0026ff;
+  }
+  to {
+    text-shadow: 0 0 20px #b7d2ff, 0 0 30px #0026ff, 0 0 40px #0026ff, 0 0 50px #0026ff, 0 0 60px #0026ff, 0 0 70px #0026ff, 0 0 80px #0026ff;
+  }
+} */

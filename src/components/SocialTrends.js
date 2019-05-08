@@ -24,7 +24,8 @@ const TitleBlue = styled.p`
   font-family: 'Neoneon';
   margin-right: 10px;
   margin-bottom: 0;
-  text-shadow: 0 0 5px #b7d2ff, 0 0 30px #0026ff, 0 0 40px #0026ff, 0 0 50px #0026ff, 0 0 60px #0026ff, 0 0 70px #0026ff, 0 0 80px #0026ff;
+  text-shadow: 0 0 5px #b7d2ff, 0 0 10px #0026ff, 0 0 20px #0026ff, 0 0 30px #0026ff, 0 0 40px #0026ff, 0 0 50px #0026ff, 0 0 60px #0026ff;
+  ${'' /* animation: glow-blue 2s ease-in-out infinite alternate; */}
 `
 
 const TitleViolet = styled.p`
@@ -33,7 +34,7 @@ const TitleViolet = styled.p`
   font-family: 'Neoneon';
   margin-left: 10px;
   margin-bottom: 0;
-  text-shadow: 0 0 2px #c260db, 0 0 20px #c260db, 0 0 30px #7c009b, 0 0 40px #7c009b, 0 0 50px #7c009b, 0 0 60px #7c009b, 0 0 70px #7c009b;
+  text-shadow: 0 0 5px #c260db, 0 0 10px #c260db, 0 0 20px #7c009b, 0 0 30px #7c009b, 0 0 40px #7c009b, 0 0 50px #7c009b, 0 0 60px #7c009b;
 `
 
 const Box = styled.div`

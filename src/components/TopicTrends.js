@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import podium from '../images/podium.png'
 import crown1 from '../images/crown1.png'
+import wood from '../images/wood.jpg'
 import Loader from 'react-loader-spinner'
 import Tada from 'react-reveal/Tada'
 import { FadeIn, Flex } from '../styles'
@@ -11,7 +12,10 @@ const Background = styled.div`
   padding: 50px 2vw 50px 2vw;
   text-align: center;
   box-shadow: inset 2px 2px 18px #000000;
-  background: #141414;
+  ${'' /* background: #141414; */}
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${wood});
+  background-repeat: no-repeat;
+  background-size: 2000px;
   color: white;
 `
 
@@ -100,13 +104,16 @@ export default class TopicTrends extends Component {
 
   getTopicTitle(index) {
     const _topics = this.state.topics
-    let backgroundColor = 'rgba(16, 0, 255, 0.5)'
+    // let backgroundColor = 'rgba(16, 0, 255, 0.5)'
+    let backgroundColor = 'rgba(0, 0, 0, 0.5)'
     let maxWidth = `40%`
     if (index === 0) {
-      backgroundColor = 'rgba(196, 0, 13, 0.5)'
+      // backgroundColor = 'rgba(196, 0, 13, 0.5)'
+      backgroundColor = 'rgba(0, 0, 0, 0.5)'
       maxWidth = `60%`
     } else if (index === 1) {
-      backgroundColor = 'rgba(32, 124, 13, 0.5)'
+      // backgroundColor = 'rgba(32, 124, 13, 0.5)'
+      backgroundColor = 'rgba(0, 0, 0, 0.5)'
     } else if (index > 2) {
       backgroundColor = 'transparent'
     }

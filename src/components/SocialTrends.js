@@ -74,25 +74,13 @@ export default () => {
         </FlexWrap>
         <Box>
           <BoxIcon src={facebook} alt="facebook" />
-          <Flex style={{ margin: '10px 0' }}>
+          <Flex style={{ margin: '10px 0' }} onClick={() => window.open('https://pantip.com/topic/38168331')}>
             <BoxNumber>1.</BoxNumber>
-            <BoxLabel>เริ่มท้อกับการผ่อนบ้าน เมื่ออายุเริ่มหลัก 4x ทำไงดีครับ</BoxLabel>
+            <BoxLabel>เราถูกผู้ชายที่คบมา8ปี และกำลังจะแต่งงานกันบอกเลิกเพราะเจอคนใหม่ที่คบมา2เดือน</BoxLabel>
           </Flex>
-          <Flex style={{ margin: '10px 0' }}>
+          <Flex style={{ margin: '10px 0' }} onClick={() => window.open('https://pantip.com/topic/38153542')}>
             <BoxNumber>2.</BoxNumber>
-            <BoxLabel>สังคมฝรั่งเค้าสอนกันยังไงครับ ทำไมดูเหมือนเค้ามีความเป็นตัวของตัวเองสูง มั่นใจในตัวเอง และมีอิสระในการแสดงความคิด</BoxLabel>
-          </Flex>
-          <Flex style={{ margin: '10px 0' }}>
-            <BoxNumber>3.</BoxNumber>
-            <BoxLabel>เครียด เจอถุงยางในกระเป๋าสามี</BoxLabel>
-          </Flex>
-          <Flex style={{ margin: '10px 0' }}>
-            <BoxNumber>4.</BoxNumber>
-            <BoxLabel>รู้สึกอยากอ้วก เวลาจับมือกับแฟนค่ะ</BoxLabel>
-          </Flex>
-          <Flex style={{ margin: '10px 0' }}>
-            <BoxNumber>5.</BoxNumber>
-            <BoxLabel>สงสัยคับ​ ผู้หญิงที่ใช้แอพแต่งรูปเยอะๆ​ เค้าใช้ชีวิตจริงกันยังใงคับ</BoxLabel>
+            <BoxLabel>ท้องกับแฟนเก่าที่เพิ่งบอกเลิกไป</BoxLabel>
           </Flex>
         </Box>
       </Container>

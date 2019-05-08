@@ -74,11 +74,11 @@ export default () => {
         </FlexWrap>
         <Box>
           <BoxIcon src={facebook} alt="facebook" />
-          <Flex style={{ margin: '10px 0' }} onClick={() => window.open('https://pantip.com/topic/38168331')}>
+          <Flex style={{ margin: '10px 0', cursor: 'pointer' }} onClick={() => window.open('https://pantip.com/topic/38168331')}>
             <BoxNumber>1.</BoxNumber>
             <BoxLabel>เราถูกผู้ชายที่คบมา8ปี และกำลังจะแต่งงานกันบอกเลิกเพราะเจอคนใหม่ที่คบมา2เดือน</BoxLabel>
           </Flex>
-          <Flex style={{ margin: '10px 0' }} onClick={() => window.open('https://pantip.com/topic/38153542')}>
+          <Flex style={{ margin: '10px 0', cursor: 'pointer' }} onClick={() => window.open('https://pantip.com/topic/38153542')}>
             <BoxNumber>2.</BoxNumber>
             <BoxLabel>ท้องกับแฟนเก่าที่เพิ่งบอกเลิกไป</BoxLabel>
           </Flex>

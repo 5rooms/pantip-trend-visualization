@@ -1,13 +1,11 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import DatePicker from '../components/DatePicker'
-import TopicTrends from '../components/TopicTrends'
-import SocialTrends from '../components/SocialTrends'
+import SideBar from '../components/SideBar'
+import Newspaper from '../components/Newspaper'
+import { Flex } from '../styles'
 
 export default () =>
-  <div>
-    <Navbar />
-    <DatePicker />
-    <TopicTrends />
-    <SocialTrends />
-  </div>
+  <Flex>
+    <SideBar />
+    <div style={{ marginLeft: '300px' }} />
+    <Newspaper />
+  </Flex>

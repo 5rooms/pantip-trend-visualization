@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -11,13 +11,8 @@ const Code = styled.div`
   font-size: 120px;
 `
 
-export default class NotFound extends PureComponent {
-  render() {
-    return (
-      <Container>
-        <Code>404</Code>
-        Page not found
-      </Container>
-    )
-  }
-}
+export default () =>
+  <Container>
+    <Code>404</Code>
+    Page not found
+  </Container>

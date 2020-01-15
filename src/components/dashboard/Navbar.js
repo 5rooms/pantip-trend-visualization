@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import pantipLogo from '../images/pantip-logo-yellow.png'
+import pantipLogo from '../../images/pantip-logo-yellow.png'
 
 const Container = styled.div`
   height: 80px;

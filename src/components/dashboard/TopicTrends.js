@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import podium from '../images/podium.png'
-import crown1 from '../images/crown1.png'
-import wood from '../images/wood.jpg'
+import podium from '../../images/podium.png'
+import crown1 from '../../images/crown1.png'
+import wood from '../../images/wood.jpg'
 import Loader from 'react-loader-spinner'
 import Tada from 'react-reveal/Tada'
-import { FadeIn, Flex } from '../styles'
+import { FadeIn, Flex } from '../../styles'
 
 const Background = styled.div`
   padding: 50px 2vw 50px 2vw;

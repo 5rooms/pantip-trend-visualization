@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FlexWrap, Flex } from '../styles'
-import bg from '../images/social-bg3.jpg'
-import facebook from '../images/facebook-glow.png'
+import { FlexWrap, Flex } from '../../styles'
+import bg from '../../images/social-bg3.jpg'
+import facebook from '../../images/facebook-glow.png'
 
 const Background = styled.div`
   padding: 50px 2vw 80px 2vw;

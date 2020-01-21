@@ -1,15 +1,11 @@
 import React from 'react'
-import { Menu, DatePicker, Button } from 'antd'
+import { Menu, Button } from 'antd'
 import { SideBarTitle, SideBarIcon, SideBarContainer, SideBarSectionTitle, SideBarRoom, Center } from '../styles'
-import moment from 'moment'
 import twitter from '../images/twitter.png'
 import facebook from '../images/facebook.png'
 import google from '../images/google.png'
 
 const { SubMenu } = Menu
-const { RangePicker } = DatePicker
-
-const dateFormat = 'DD-MM-YYYY'
 
 export default () => {
   return (
@@ -26,13 +22,6 @@ export default () => {
         <Menu.Item>3. <SideBarRoom>ห้องบลูแพลนเน็ต</SideBarRoom></Menu.Item>
         <Menu.Item>4. <SideBarRoom>ห้องก้นครัว</SideBarRoom></Menu.Item>
         <Menu.Item>5. <SideBarRoom>ห้องบางรัก</SideBarRoom></Menu.Item>
-        <SideBarSectionTitle>Period of Trend</SideBarSectionTitle>
-        <Center>
-          <RangePicker
-            style={{ width: `95%` }}
-            defaultValue={[moment('04-03-2019', dateFormat), moment('06-03-2019', dateFormat)]}
-          />
-        </Center>
         <SubMenu
           key="social"
           title={

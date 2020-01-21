@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { NewspaperContainer, NewspaperContent, FlexWrap, NewspaperDate, NewspaperImage } from '../styles'
+import { DatePicker } from 'antd'
 import axios from 'axios'
-import { NewspaperContainer, NewspaperVeryLargeContent, NewspaperLargeContent, NewspaperContent, NewspaperImage } from '../styles'
+import moment from 'moment'
+
+const { RangePicker } = DatePicker
+
+const dateFormat = 'DD-MM-YYYY'
 
 const mockTopics = [
   { topic_id: '38619059', viewers: 42264 },
@@ -16,7 +22,7 @@ export default () => {
   const findImage = desc => {
     if (desc.includes('src'))
       return desc.split('src')[1].split('"')[1]
-    return ''
+    return null
   }
 
   useEffect(() => {
@@ -25,43 +31,66 @@ export default () => {
         const _topics = []
         values.forEach(value => {
           const topic = mockTopics.find(t => t.topic_id === value.data._id)
-          _topics.push({ ...topic, title: value.data._source.title_full, desc: value.data._source.desc_full, image: findImage(value.data._source.desc_full) })
+          const data = value.data._source
+          _topics.push({ ...topic, url: data.permalink, title: data.title_full, desc: data.desc, image: findImage(data.desc_full) })
         })
         _topics.sort((a, b) => b.viewers - a.viewers)
         setTopics(_topics)
       })
   }, [])
 
-  return topics.length > 0 ? <NewspaperContainer>
-    <NewspaperVeryLargeContent>
-      {topics[2].title}
-      {topics[2].image ? <NewspaperImage src={topics[2].image} alt={topics[2].title} /> : ''}
-    </NewspaperVeryLargeContent>
-    <NewspaperVeryLargeContent>
-      {topics[4].title}
-      {topics[4].image ? <NewspaperImage src={topics[4].image} alt={topics[4].title} /> : ''}
-    </NewspaperVeryLargeContent>
-    <NewspaperContent>
-      {topics[0].title}
-      {topics[0].image ? <NewspaperImage src={topics[0].image} alt={topics[0].title} /> : ''}
-    </NewspaperContent>
-    <NewspaperContent>
-      {topics[3].title}
-      {topics[3].image ? <NewspaperImage src={topics[3].image} alt={topics[3].title} /> : ''}
-    </NewspaperContent>
-    <NewspaperLargeContent>
-      {topics[1].title}
-      {topics[1].image ? <NewspaperImage src={topics[1].image} alt={topics[1].title} /> : ''}
-    </NewspaperLargeContent>
-    <NewspaperLargeContent>
-      ปรีณาลั่น! ทั้งหมดเป็นฝีมือของทักษิณ
-    </NewspaperLargeContent>
-    <NewspaperContent>
-      ปรีณาลั่น! ทั้งหมดเป็นฝีมือของทักษิณ
+  const getNewspaperContent = (layout = 1, topic = {}) => {
+    const hasImage = topic.image
+    const title = <h1>{topic.title}</h1>
+    const detail = (
+      <p>
+        {topic.desc.substring(0, layout > 1 && hasImage ? 200 : 500)}...&nbsp;
+        <br />
+        <a rel="noopener noreferrer" target="_blank" href={topic.url}>อ่านต่อ</a>
+      </p>
+    )
+    const image = hasImage ? <NewspaperImage src={topic.image} layout={layout} /> : ''
+
+    return (
+      <NewspaperContent layout={layout} hasImage={hasImage}>
+        {layout < 3 ? (
+          <>
+            <div>
+              {title}
+              {detail}
+            </div>
+            {image}
+          </>
+        ) : (
+            <div>
+              {image}
+              {title}
+              {detail}
+            </div>
+          )}
       </NewspaperContent>
-    <NewspaperContent>
-      ปรีณาลั่น! ทั้งหมดเป็นฝีมือของทักษิณ
-      </NewspaperContent>
-  </NewspaperContainer>
+    )
+  }
+
+  return topics.length > 0 ? (
+    <NewspaperContainer>
+      <h1>P A N T I P&nbsp;&nbsp;&nbsp;N E W S</h1>
+      <NewspaperDate>
+        <p>ปีที่ 1 ฉบับที่ 1</p>
+        <RangePicker
+          style={{ width: `300px` }}
+          defaultValue={[moment('04-03-2019', dateFormat), moment('06-03-2019', dateFormat)]}
+        />
+      </NewspaperDate>
+      <hr />
+      <FlexWrap>
+        {getNewspaperContent(1, topics[2])}
+        {getNewspaperContent(2, topics[4])}
+        {getNewspaperContent(3, topics[0])}
+        {getNewspaperContent(2, topics[1])}
+        {getNewspaperContent(3, topics[3])}
+      </FlexWrap>
+    </NewspaperContainer>
+  )
     : <div>Loading...</div>
 }

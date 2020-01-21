@@ -25,7 +25,7 @@ export const Center = styled.div`
 
 export const SideBarContainer = styled.div`
   height: 100vh;
-  width: 300px;
+  width: 250px;
   position: fixed;
   overflow: hidden;
   background-color: #1B262C;
@@ -71,41 +71,84 @@ export const SideBarRoom = styled.span`
 `
 
 export const NewspaperContainer = styled.div`
-  background: #D2E9E1;
+  background: white;
+  max-width: 1450px;
+  margin: auto;
   width: 100%;
   min-height: 100vh;
   padding: 5px;
-  display: flex;
-  flex-wrap: wrap;
+  color: black;
 
-  & > div {
-    background: #3399AA;
-    padding: 10px;
-    border: 10px solid #D2E9E1;
-    font-family: 'Kanit', sans-serif;
-    color: #FFCD05;
-    overflow: hidden;
+  & > h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Anton', sans-serif;
+  }
+
+  & > hr {
+    width: 80%;
+    margin-bottom: 20px;
+    border-width: 2px;
+    border-color: black;
   }
 `
 
-export const NewspaperVeryLargeContent = styled.div`
-  width: 50%;
-  height: 50%;
-  font-size: 30px;
-`
+export const NewspaperDate = styled.div`
+  display: flex;
+  margin-left: calc(80% - 290px);
+  font-weight: bold;
 
-export const NewspaperLargeContent = styled.div`
-  width: 50%;
-  height: 25%;
-  font-size: 24px;
+  & > p {
+    font-size: 20px;
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
 `
 
 export const NewspaperContent = styled.div`
-  width: 25%;
-  height: 25%;
-  font-size: 24px;
+  width: ${props => {
+    switch (props.layout) {
+      case 2: return '66.66%'
+      case 3: return '33.33%'
+      default: return '100%'
+    }
+  }};
+  padding: 10px 20px;
+  display: ${props => props.layout < 3 ? 'flex' : 'block'};
+
+  & > div:first-child {
+    width: ${props => props.hasImage && props.layout < 2 ? '40%' : '100%'};
+  }
+
+  & > div > h1, & > div > p {
+    padding-right: 20px;
+  }
+
+  & > div > h1 {
+    font-size: ${props => {
+    switch (props.layout) {
+      case 2: return '30px'
+      case 3: return '20px'
+      default: return '40px'
+    }
+  }};
+    font-weight: bolder;
+    font-family: 'Pridi', serif;
+  }
+
+  & > div > p {
+    font-size: 16px;
+    font-family: 'Bai Jamjuree', sans-serif;
+  }
 `
 
-export const NewspaperImage = styled.img`
-  width: 100%;
+export const NewspaperImage = styled.div`
+  background-image: url('${props => props.src}');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  width: ${props => props.layout < 2 ? '60%' : '100%'};
+  height: ${props => props.layout < 2 ? 'auto' : '250px'};
 `

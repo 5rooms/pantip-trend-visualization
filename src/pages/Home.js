@@ -1,11 +1,9 @@
 import React from 'react'
-import SideBar from '../components/SideBar'
 import Newspaper from '../components/Newspaper'
-import { Flex } from '../styles'
+import Navbar from '../components/Navbar'
 
 export default () =>
-  <Flex>
-    <SideBar />
-    <div style={{ marginLeft: '200px' }} />
+  <>
+    <Navbar />
     <Newspaper />
-  </Flex>
+  </>

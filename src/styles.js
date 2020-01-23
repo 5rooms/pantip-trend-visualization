@@ -10,6 +10,20 @@ export const FadeIn = keyframes`
   }
 `
 
+export const SlideIn = (height) => keyframes`
+  from {
+    height: 0;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  to {
+    height: ${height};
+    align-items: center;
+    overflow: auto
+  }
+`
+
 export const Flex = styled.div`
   display: flex;
 `
@@ -21,6 +35,45 @@ export const FlexWrap = styled.div`
 
 export const Center = styled.div`
   text-align: center;
+`
+
+export const NavbarContainer = styled.div`
+  height: 80px;
+  background-color: white;
+  color: black;
+  box-shadow: ${props => props.scrollPosition > 0 ? '0px 2px 5px rgba(0, 0, 0, 0.25)' : '0px 2px 5px rgba(0, 0, 0, 0.09)'};
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  z-index: 99;
+  animation: ${SlideIn('80px')} 2s;
+  padding: 0 6.5%;
+
+  & > * {
+    animation: ${SlideIn('100%')} 2s;
+    animatin: ${FadeIn} 2s;
+    margin: 0 5%;
+    ${'' /* overflow: auto; */}
+  }
+
+  & > div:first-child {
+    margin: 0;
+  }
+
+  & > div {
+    display: flex;
+  }
+
+  & > div > div {
+    margin: 0 50px;
+    font-size: 20px;
+    font-family: 'Pridi', serif;
+  }
+`
+
+export const NavbarSpace = styled.div`
+  height: 80px;
 `
 
 export const SideBarContainer = styled.div`
@@ -72,12 +125,12 @@ export const SideBarRoom = styled.span`
 
 export const NewspaperContainer = styled.div`
   background: white;
-  max-width: 1450px;
+  max-width: 90%;
   margin: auto;
-  width: 100%;
   min-height: 100vh;
   padding: 5px;
   color: black;
+  animation: ${FadeIn} 1s;
 
   & > h1 {
     text-align: center;
@@ -89,7 +142,8 @@ export const NewspaperContainer = styled.div`
   }
 
   & > hr {
-    width: 80%;
+    width: 100%;
+    margin-top: 40px;
     margin-bottom: 20px;
     border-width: 2px;
     border-color: black;
@@ -98,8 +152,8 @@ export const NewspaperContainer = styled.div`
 
 export const NewspaperDate = styled.div`
   display: flex;
-  margin-left: calc(80% - 290px);
   font-weight: bold;
+  float: right;
 
   & > p {
     font-size: 20px;
@@ -130,9 +184,9 @@ export const NewspaperContent = styled.div`
   & > div > h1 {
     font-size: ${props => {
     switch (props.layout) {
-      case 2: return '30px'
+      case 2: return '20px'
       case 3: return '20px'
-      default: return '40px'
+      default: return '30px'
     }
   }};
     font-weight: bolder;
@@ -151,4 +205,11 @@ export const NewspaperImage = styled.div`
   background-size: 100% auto;
   width: ${props => props.layout < 2 ? '60%' : '100%'};
   height: ${props => props.layout < 2 ? 'auto' : '250px'};
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: transform .2s;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 `

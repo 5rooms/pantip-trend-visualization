@@ -41,10 +41,12 @@ export default () => {
 
   const getNewspaperContent = (layout = 1, topic = {}) => {
     const hasImage = topic.image
+    const length = layout > 1 && hasImage ? 200 : 300
+    const desc = topic.desc.substring(0, length).concat(topic.desc.length <= length ? '' : '...')
     const title = <h1>{topic.title}</h1>
     const detail = (
       <p>
-        {topic.desc.substring(0, layout > 1 && hasImage ? 200 : 500)}...&nbsp;
+        {desc}
         <br />
         <a rel="noopener noreferrer" target="_blank" href={topic.url}>อ่านต่อ</a>
       </p>
@@ -63,8 +65,8 @@ export default () => {
           </>
         ) : (
             <div>
-              {image}
               {title}
+              {image}
               {detail}
             </div>
           )}
@@ -85,9 +87,9 @@ export default () => {
       <hr />
       <FlexWrap>
         {getNewspaperContent(1, topics[2])}
-        {getNewspaperContent(2, topics[4])}
+        {getNewspaperContent(3, topics[4])}
         {getNewspaperContent(3, topics[0])}
-        {getNewspaperContent(2, topics[1])}
+        {getNewspaperContent(3, topics[1])}
         {getNewspaperContent(3, topics[3])}
       </FlexWrap>
     </NewspaperContainer>

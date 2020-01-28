@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { NewspaperContainer, NewspaperContent, FlexWrap, NewspaperDate, NewspaperImage } from '../styles'
+import { NewspaperContainer, NewspaperContent, Flex, FlexWrap, NewspaperDate, NewspaperImage, NewspaperQA, NewspaperFacebook } from '../styles'
 import { DatePicker } from 'antd'
 import axios from 'axios'
 import moment from 'moment'
@@ -14,6 +14,8 @@ const mockTopics = [
   { topic_id: '38602203', viewers: 26649 },
   { topic_id: '38610945', viewers: 18863 },
   { topic_id: '38622192', viewers: 15804 },
+  { topic_id: '39580655', viewers: 15804 },
+  { topic_id: '39587022', viewers: 15804 },
 ]
 
 export default () => {
@@ -32,17 +34,28 @@ export default () => {
         values.forEach(value => {
           const topic = mockTopics.find(t => t.topic_id === value.data._id)
           const data = value.data._source
-          _topics.push({ ...topic, url: data.permalink, title: data.title_full, desc: data.desc, image: findImage(data.desc_full) })
+          _topics.push({
+            ...topic,
+            ...data,
+            url: data.permalink,
+            title: data.title_full,
+            desc: data.desc,
+            image: findImage(data.desc_full)
+          })
         })
         _topics.sort((a, b) => b.viewers - a.viewers)
         setTopics(_topics)
       })
   }, [])
 
+  const cut = (desc, length) => {
+    return desc.substring(0, length).concat(desc.length <= length ? '' : '...')
+  }
+
   const getNewspaperContent = (layout = 1, topic = {}) => {
     const hasImage = topic.image
     const length = layout > 1 && hasImage ? 200 : 300
-    const desc = topic.desc.substring(0, length).concat(topic.desc.length <= length ? '' : '...')
+    const desc = cut(topic.desc, length)
     const title = <h1>{topic.title}</h1>
     const detail = (
       <p>
@@ -55,7 +68,7 @@ export default () => {
 
     return (
       <NewspaperContent layout={layout} hasImage={hasImage}>
-        {layout < 3 ? (
+        {layout < 2 ? (
           <>
             <div>
               {title}
@@ -74,24 +87,90 @@ export default () => {
     )
   }
 
+  const getQAContent = (topic = {}) => {
+    return (
+      <NewspaperQA>
+        <div>
+          <h1>Q: {topic.title} {topic.title.includes('?') ? '' : '?'}</h1>
+          <p><img src={topic.avatar} alt={topic.nickname} height="40" /> {topic.nickname} | {moment(parseInt(topic.created_time, 10) * 1000).format('LLL')}</p>
+        </div>
+        <div>
+          A: {cut(topic.comments_desc[0].substring(9), 300)}
+          <br />
+          <br />
+          <p><img src={topic.comments[0].avatar} alt={topic.comments[0].nickname} height="40" />{topic.comments[0].nickname} | {moment(parseInt(topic.comments[0].created_time, 10) * 1000).format('LLL')}</p>
+        </div>
+      </NewspaperQA>
+    )
+  }
+
+  const getFacebookContent = (topic = {}) => {
+    return (
+      <NewspaperFacebook>
+        <Flex>
+          <img src={topic.avatar} alt={topic.nickname} height="40" />
+          <div>
+            <a rel="noopener noreferrer" target="_blank" href={topic.url}>{topic.nickname}</a>
+            <br />
+            <p>
+              {moment(parseInt(topic.created_time, 10) * 1000).format('LLL')}
+            </p>
+          </div>
+        </Flex>
+        {cut(topic.desc, 300)}<br /><a rel="noopener noreferrer" target="_blank" href={topic.url}>ดูเพิ่มเติม</a>
+        {topic.image ? <img src={topic.img} alt="" /> : ''}
+      </NewspaperFacebook>
+    )
+  }
+
   return topics.length > 0 ? (
     <NewspaperContainer>
       <h1>P A N T I P&nbsp;&nbsp;&nbsp;N E W S</h1>
       <NewspaperDate>
-        <p>ปีที่ 1 ฉบับที่ 1</p>
+        <p>ปีที่ 1 ฉบับที่ 1 ประจำวันที่</p>
         <RangePicker
           style={{ width: `300px` }}
           defaultValue={[moment('04-03-2019', dateFormat), moment('06-03-2019', dateFormat)]}
         />
       </NewspaperDate>
       <hr />
-      <FlexWrap>
-        {getNewspaperContent(1, topics[2])}
-        {getNewspaperContent(3, topics[4])}
-        {getNewspaperContent(3, topics[0])}
-        {getNewspaperContent(3, topics[1])}
-        {getNewspaperContent(3, topics[3])}
-      </FlexWrap>
+      <hr />
+      <Flex>
+        <div>
+          <FlexWrap>
+            {getNewspaperContent(1, topics[2])}
+            {getNewspaperContent(3, topics[4])}
+            {getNewspaperContent(3, topics[0])}
+            {getNewspaperContent(3, topics[1])}
+            {getNewspaperContent(3, topics[3])}
+            {getNewspaperContent(3, topics[3])}
+            {getNewspaperContent(3, topics[3])}
+          </FlexWrap>
+        </div>
+        <div>
+          <h1>Trending now</h1>
+          {[0, 1, 2, 3].map(n => getNewspaperContent(2, topics[n]))}
+        </div>
+      </Flex>
+      <hr />
+      <hr />
+      <Flex>
+        <div>
+          <h1>คำถามยอดฮิต</h1>
+          <FlexWrap>
+            {getQAContent(topics[5])}
+            {getQAContent(topics[6])}
+            {getQAContent(topics[5])}
+          </FlexWrap>
+        </div>
+        <div>
+          <h1>Hits on Facebook</h1>
+          <FlexWrap>
+            {getFacebookContent(topics[5])}
+            {getFacebookContent(topics[6])}
+          </FlexWrap>
+        </div>
+      </Flex>
     </NewspaperContainer>
   )
     : <div>Loading...</div>

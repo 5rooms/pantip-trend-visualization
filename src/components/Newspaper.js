@@ -3,6 +3,7 @@ import { NewspaperContainer, NewspaperContent, Flex, FlexWrap, NewspaperDate, Ne
 import { DatePicker } from 'antd'
 import axios from 'axios'
 import moment from 'moment'
+import like from '../images/like.png'
 
 const { RangePicker } = DatePicker
 
@@ -91,7 +92,7 @@ export default () => {
     return (
       <NewspaperQA>
         <div>
-          <h1>Q: {topic.title} {topic.title.includes('?') ? '' : '?'}</h1>
+          <a rel="noopener noreferrer" target="_blank" href={topic.url}>Q: {topic.title} {topic.title.includes('?') ? '' : '?'}</a>
           <p><img src={topic.avatar} alt={topic.nickname} height="40" /> {topic.nickname} | {moment(parseInt(topic.created_time, 10) * 1000).format('LLL')}</p>
         </div>
         <div>
@@ -117,8 +118,12 @@ export default () => {
             </p>
           </div>
         </Flex>
-        {cut(topic.desc, 300)}<br /><a rel="noopener noreferrer" target="_blank" href={topic.url}>ดูเพิ่มเติม</a>
-        {topic.image ? <img src={topic.img} alt="" /> : ''}
+        <p>{cut(topic.desc, 300)}<br /><a rel="noopener noreferrer" target="_blank" href={topic.url}>ดูเพิ่มเติม</a></p>
+        {topic.image ? <img src={topic.image} alt="" /> : ''}
+        <Flex>
+          <p><img src={like} alt="like" height="25" /> {topic.point}</p>
+          <p>ความคิดเห็น {topic.comment_count} รายการ</p>
+        </Flex>
       </NewspaperFacebook>
     )
   }
@@ -166,7 +171,7 @@ export default () => {
         <div>
           <h1>Hits on Facebook</h1>
           <FlexWrap>
-            {getFacebookContent(topics[5])}
+            {getFacebookContent(topics[2])}
             {getFacebookContent(topics[6])}
           </FlexWrap>
         </div>

@@ -265,9 +265,11 @@ export const NewspaperImage = styled.div`
 export const NewspaperQA = styled.div`
   padding: 10px 20px;
   color: black;
+  width: 100%;
 
   & > div:first-child {
-    background-color: #c4c4c4;
+    ${'' /* background-color: #c6c6c6; */}
+    border: 1px solid #c4c4c4;
   }
 
   & > div:first-child > h1 {
@@ -276,7 +278,9 @@ export const NewspaperQA = styled.div`
   }
 
   & > div:nth-child(2) {
-    background-color: #eeeeee;
+    ${'' /* background-color: #eeeeee; */}
+    border: 1px solid #c4c4c4;
+    border-top: 0;
   }
 
   & > div {
@@ -297,12 +301,23 @@ export const NewspaperQA = styled.div`
 `
 
 export const NewspaperFacebook = styled.div`
-  padding: 12px;
   font-size: 16px;
-  background: white;
+  border: 1px solid #c4c4c4;
   color: black;
   margin: 5px 0;
   border-radius: 3px;
+
+  & > div:nth-child(4) > p {
+    color: #606770;
+  }
+
+  & > div:nth-child(4) > p:nth-child(2) {
+    margin: 0 0 0 auto;
+  }
+
+  & > div, & > p {
+    padding: 12px 12px 0 12px;
+  }
 
   & > div > div > a {
     color: #385898;
@@ -312,10 +327,15 @@ export const NewspaperFacebook = styled.div`
   & > div > div > p {
     color: #616770;
     font-size: 14px;
+    margin-bottom: 0;
   }
 
   & > div > img {
     margin-right: 8px;
     border-radius: 50%;
+  }
+
+  & > img {
+    width: 100%;
   }
 `
